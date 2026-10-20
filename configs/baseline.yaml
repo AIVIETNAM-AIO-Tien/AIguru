@@ -1,0 +1,47 @@
+paths:
+  profiling_csv: data/profing.csv         
+  parquet_dir: data/corpus                 
+  output_dir: outputs
+profiling:
+  encoding: utf-8-sig                      
+  columns:                                 
+    domain: ten_mien
+    language: ngon_ngu
+    url_count: so_luong_url
+corpus:
+  filename_pattern: "{domain}.parquet"     
+  columns:                                 
+    id: id
+    url: url
+    domain: domain
+    title: title
+    text: text
+  languages: [vi]                          
+errors:
+  on_missing_file: warn                    
+  on_row_count_mismatch: warn              
+  on_read_error: warn
+  on_empty_text: keep                      
+chunking:
+  chunk_size: 512
+  chunk_overlap: 100                       
+  tokenizer_name: BAAI/bge-m3
+embedding:
+  model_name: BAAI/bge-m3
+  revision: null                           
+  batch_size: 32
+  normalize: true
+lancedb:
+  uri: lancedb_data
+  table_name: chunks
+  metric: cosine
+  store_tokenized_text: true              
+retrieval:
+  dense_k: 100
+  bm25_k: 100
+  rrf_k: 60                             
+  final_chunk_k: 20
+  final_doc_k: 20
+  doc_policy: best_chunk
+logging:
+  level: INFO
