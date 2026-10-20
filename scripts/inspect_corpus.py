@@ -1,4 +1,3 @@
-"""Summarize profiling CSV (domain inventory, URL counts per language)."""
 import argparse, json, sys
 from vibiomir.config import load_settings
 from vibiomir.data.profiling import read_profiling

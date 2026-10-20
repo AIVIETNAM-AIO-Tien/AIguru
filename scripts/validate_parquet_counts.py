@@ -1,4 +1,3 @@
-"""Compare profiling url_count with actual Parquet row counts (footer metadata only)."""
 import argparse, csv, sys
 from dataclasses import asdict
 from vibiomir.config import load_settings, setup_logging

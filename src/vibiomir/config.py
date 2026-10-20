@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import yaml
+import logging
+
 from dataclasses import dataclass, field, fields, is_dataclass
 from pathlib import Path
 from typing import Any, Optional
@@ -107,11 +110,9 @@ def _merge(obj: Any, data: dict[str, Any]) -> None:
 def load_settings(path: str | Path | None = None) -> Settings:
     s = Settings()
     if path is not None:
-        import yaml
-        with open(path, encoding="utf-8") as fh:
-            _merge(s, yaml.safe_load(fh) or {})
+        with open(path, encoding="utf-8") as f:
+            _merge(s, yaml.safe_load(f) or {})
     return s
 
 def setup_logging(cfg: LoggingConfig) -> None:
-    import logging
     logging.basicConfig(level=cfg.level, format="%(asctime)s %(levelname)s %(name)s: %(message)s")

@@ -1,4 +1,3 @@
-"""Read the domain-level profiling CSV (NOT the document corpus)."""
 from __future__ import annotations
 
 import re
@@ -16,8 +15,8 @@ _LANG_RE = re.compile(r"\(([A-Za-z]{2,3})\)\s*$")
 @dataclass(frozen=True)
 class DomainRecord:
     domain: str
-    language: str            # normalized: "vi" | "en" | "zh" (or "unknown")
-    language_label: str      # original label, kept for provenance
+    language: str            # normalized: "vi" | "en" | "zh"
+    language_label: str     
     expected_url_count: int
 
 

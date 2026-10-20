@@ -8,5 +8,3 @@ Flow: `profing.csv` -> domain inventory -> per-domain Parquet -> `Document` -> `
 -> bge-m3 vectors -> LanceDB (vector + FTS) -> dense + BM25 -> RRF -> chunks + documents -> submission.
 
 Run: `pip install -e .[dev]` then `pytest`; `python scripts/inspect_corpus.py --csv path/to/profing.csv`.
-
-See the final report in the chat for verified vs. unverified assumptions.

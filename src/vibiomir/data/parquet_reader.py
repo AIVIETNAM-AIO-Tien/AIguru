@@ -1,8 +1,8 @@
-"""Discover and stream domain-level Parquet files."""
 from __future__ import annotations
 
 from pathlib import Path
 from typing import Iterator
+import pyarrow.parquet as pq
 
 from ..config import CorpusConfig, ErrorPolicyConfig
 from ..models import Document
@@ -13,8 +13,6 @@ from .validation import expected_path
 
 class ParquetCorpusReader:
     """Streams normalized Documents per domain in batches (never loads a whole corpus).
-
-    UNVERIFIED against real files: column names (configurable) and filename pattern.
     """
 
     def __init__(self, parquet_dir: str | Path, corpus: CorpusConfig,
@@ -28,17 +26,14 @@ class ParquetCorpusReader:
         return expected_path(self.dir, rec.domain, self.corpus.filename_pattern)
 
     def schema_of(self, rec: DomainRecord):
-        import pyarrow.parquet as pq
         return pq.ParquetFile(self.path_for(rec)).schema_arrow
 
     def iter_documents(self, rec: DomainRecord) -> Iterator[Document]:
-        import pyarrow.parquet as pq
         path = self.path_for(rec)
         wanted = list(dict.fromkeys(self.corpus.columns.values()))
         pf = pq.ParquetFile(path)
         have = set(pf.schema_arrow.names)
         absent = [c for c in wanted if c not in have]
-        # title/domain are optional by policy; id/url/text are required.
         required_missing = [c for c in absent if c in (self.corpus.columns["id"],
                                                        self.corpus.columns["url"],
                                                        self.corpus.columns["text"])]

@@ -1,4 +1,3 @@
-"""Expected (profiling) vs actual (Parquet) row-count validation."""
 from __future__ import annotations
 
 import logging

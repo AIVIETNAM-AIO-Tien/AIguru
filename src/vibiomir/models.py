@@ -6,13 +6,13 @@ from typing import Any, Optional
 
 @dataclass(frozen=True)
 class Document:
-    document_id: str            # original benchmark id; never regenerated
+    document_id: str           
     source_url: str
     domain: str
     language: str               # "vi" | "en" | "zh"
     title: Optional[str]
-    text: str                   # may be "" (policy: errors.on_empty_text)
-    provenance: dict[str, Any] = field(default_factory=dict)  # e.g. source_file, row_index
+    text: str                  
+    provenance: dict[str, Any] = field(default_factory=dict)  
 
 
 @dataclass(frozen=True)
@@ -20,7 +20,7 @@ class Chunk:
     chunk_id: str               # f"{document_id}::{chunk_index}" (chunking.base.make_chunk_id)
     document_id: str
     chunk_index: int
-    chunk_text: str             # original text, never tokenized/modified
+    chunk_text: str             # original text
     title: Optional[str]
     source_url: str
     domain: str
@@ -28,7 +28,7 @@ class Chunk:
     token_count: Optional[int] = None
     char_start: Optional[int] = None
     char_end: Optional[int] = None
-    tokenized_text: Optional[str] = None   # optional lexical field (e.g. pyvi output)
+    tokenized_text: Optional[str] = None   # optional lexical field (pyvi output)
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
