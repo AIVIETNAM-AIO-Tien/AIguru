@@ -28,9 +28,12 @@ chunking:
   tokenizer_name: BAAI/bge-m3
 embedding:
   model_name: BAAI/bge-m3
-  revision: null                           
+  revision: "5617a9f61b028005a4858fdac845db406aefb181"   
+  dimension: 1024                            
   batch_size: 32
   normalize: true
+  use_fp16: true
+  max_length: 514.
 lancedb:
   uri: lancedb_data
   table_name: chunks

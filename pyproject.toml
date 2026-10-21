@@ -9,7 +9,7 @@ dependencies = ["pandas", "pyarrow", "PyYAML"]
 [project.optional-dependencies]
 # Heavy or not-yet-needed deps stay optional and are imported lazily.
 storage = ["lancedb"]
-embedding = ["transformers", "torch"]       # or FlagEmbedding; decide in phase 2
+embedding = ["transformers", "torch", "FlagEmbedding"]    
 chunking = ["langchain-text-splitters", "transformers"]
 vi = ["pyvi"]
 dev = ["pytest"]

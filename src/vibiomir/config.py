@@ -52,9 +52,11 @@ class ChunkingConfig:
 class EmbeddingConfig:
     model_name: str = "BAAI/bge-m3"
     revision: Optional[str] = None
-    batch_size: int = 16
+    dimension: int = 1024    
+    batch_size: int = 32
     normalize: bool = True
-    max_length: int = 512
+    use_fp16: bool = True
+    max_length: int = 514
 
 
 @dataclass
