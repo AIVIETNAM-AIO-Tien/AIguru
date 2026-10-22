@@ -3,13 +3,12 @@ name = "vibiomir"
 version = "0.0.1"
 description = "ViBioMIR baseline retrieval pipeline (skeleton)"
 requires-python = ">=3.10"
-# Core: only what the data/validation layer needs today.
 dependencies = ["pandas", "pyarrow", "PyYAML"]
 
 [project.optional-dependencies]
 # Heavy or not-yet-needed deps stay optional and are imported lazily.
 storage = ["lancedb"]
-embedding = ["transformers", "torch", "FlagEmbedding"]    
+embedding = ["transformers", "torch", "FlagEmbedding", "huggingface_hub"]    
 chunking = ["langchain-text-splitters", "transformers"]
 vi = ["pyvi"]
 dev = ["pytest"]

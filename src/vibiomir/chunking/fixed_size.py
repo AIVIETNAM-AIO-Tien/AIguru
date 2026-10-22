@@ -27,7 +27,7 @@ class FixedSizeTokenChunker(Chunker):
         enc = self.tokenizer(text, add_special_tokens=False,
                              return_offsets_mapping=True, truncation=False,
                              verbose=False)
-        # return_offsets_mapping=True return pairs [start_token, end_token)
+        # return_offsets_mapping=True return pairs [start_pos_token, end__pos_token)
         
         offsets = enc["offset_mapping"]
         n = len(offsets)

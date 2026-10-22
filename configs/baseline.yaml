@@ -2,6 +2,7 @@ paths:
   profiling_csv: data/profing.csv         
   parquet_dir: data/corpus                 
   output_dir: outputs
+  work_dir: work   
 profiling:
   encoding: utf-8-sig                      
   columns:                                 
@@ -38,7 +39,15 @@ lancedb:
   uri: lancedb_data
   table_name: chunks
   metric: cosine
-  store_tokenized_text: true              
+  store_tokenized_text: true
+  fts_column: tokenized_text
+  fts_base_tokenizer: whitespace
+  fts_lower_case: true
+  fts_stem: false                 
+  fts_remove_stop_words: false
+  fts_ascii_folding: false 
+  vector_index_type: IVF_PQ 
+  vector_num_partitions: null
 retrieval:
   dense_k: 100
   bm25_k: 100
@@ -46,5 +55,7 @@ retrieval:
   final_chunk_k: 20
   final_doc_k: 20
   doc_policy: best_chunk
+pipeline:
+  batch_rows: 2048
 logging:
   level: INFO

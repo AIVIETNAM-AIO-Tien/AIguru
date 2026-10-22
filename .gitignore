@@ -6,3 +6,4 @@ data/corpus
 .venv/
 venv/
 *.egg-info/
+work/

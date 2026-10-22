@@ -13,6 +13,7 @@ class PathsConfig:
     profiling_csv: str = "data/profing.csv"
     parquet_dir: str = "data/corpus"
     output_dir: str = "outputs"
+    work_dir: str = "work"  
 
 
 @dataclass
@@ -47,7 +48,6 @@ class ChunkingConfig:
     def stride(self) -> int:
         return self.chunk_size - self.chunk_overlap
 
-
 @dataclass
 class EmbeddingConfig:
     model_name: str = "BAAI/bge-m3"
@@ -58,14 +58,20 @@ class EmbeddingConfig:
     use_fp16: bool = True
     max_length: int = 514
 
-
 @dataclass
 class LanceDBConfig:
     uri: str = "lancedb_data"
     table_name: str = "chunks"
     metric: str = "cosine"
     store_tokenized_text: bool = True
-
+    fts_column: str = "tokenized_text"
+    fts_base_tokenizer: str = "whitespace"
+    fts_lower_case: bool = True
+    fts_stem: bool = False
+    fts_remove_stop_words: bool = False
+    fts_ascii_folding: bool = False
+    vector_index_type: str = "IVF_PQ"
+    vector_num_partitions: Optional[int] = None
 
 @dataclass
 class RetrievalConfig:
@@ -76,11 +82,13 @@ class RetrievalConfig:
     final_doc_k: int = 20
     doc_policy: str = "best_chunk"
 
+@dataclass
+class PipelineConfig:
+    batch_rows: int = 2048
 
 @dataclass
 class LoggingConfig:
     level: str = "INFO"
-
 
 @dataclass
 class Settings:
@@ -92,6 +100,7 @@ class Settings:
     embedding: EmbeddingConfig = field(default_factory=EmbeddingConfig)
     lancedb: LanceDBConfig = field(default_factory=LanceDBConfig)
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
+    pipeline: PipelineConfig = field(default_factory=PipelineConfig)
     logging: LoggingConfig = field(default_factory=LoggingConfig)
 
 
