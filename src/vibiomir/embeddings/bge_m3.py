@@ -64,8 +64,6 @@ class BgeM3EmbeddingModel(EmbeddingModel):
             raise TypeError("encode_query cần một chuỗi")
         return self._encode([text])[0]
 
-    # ----- bên trong ----------------------------------------------------------------------
-
     def _encode(self, texts: Sequence[str]) -> np.ndarray:
         """Gọi model, rồi kiểm tra và chuẩn hóa kết quả."""
         self._load_model()

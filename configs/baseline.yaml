@@ -34,7 +34,7 @@ embedding:
   batch_size: 32
   normalize: true
   use_fp16: true
-  max_length: 514.
+  max_length: 514
 lancedb:
   uri: lancedb_data
   table_name: chunks
