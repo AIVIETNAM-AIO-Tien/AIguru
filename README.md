@@ -1,4 +1,8 @@
 ## 1. Offline
+```
+data/
+  corpus/<domain>.parquet 
+```
 
 ### 1.1. 
 ```bash
