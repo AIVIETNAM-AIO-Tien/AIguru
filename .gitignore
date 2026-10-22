@@ -2,7 +2,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .ipynb_checkpoints/
-data/corpus
+data/corpus/
 .venv/
 venv/
 *.egg-info/
